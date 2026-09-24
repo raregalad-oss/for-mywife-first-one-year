@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -7,66 +6,120 @@
 <title>سنتنا الأولى ❤️</title>
 
 <style>
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
 body{
     margin:0;
     min-height:100vh;
-    overflow:hidden;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#ffd6e7,#ffe9a8,#d9f8ff);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:#7a3154;
+    font-family:Tahoma,Arial,sans-serif;
+    background:linear-gradient(135deg,#ffd6e7,#fff0b5,#d9f8ff);
+    color:#71324e;
+    overflow-x:hidden;
+}
+
+.star{
+    position:fixed;
+    color:#fff;
+    font-size:14px;
+    pointer-events:none;
+    animation:twinkle 2s infinite alternate;
+    z-index:0;
+}
+
+@keyframes twinkle{
+    from{opacity:.2;transform:scale(.7)}
+    to{opacity:1;transform:scale(1.3)}
 }
 
 .heart{
     position:fixed;
-    bottom:-40px;
-    animation:up 7s linear infinite;
+    bottom:-50px;
+    color:#e51d4f;
     pointer-events:none;
+    animation:floatUp linear forwards;
+    z-index:1;
 }
 
-@keyframes up{
-    0%{transform:translateY(0);opacity:0}
-    15%{opacity:1}
-    100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
+@keyframes floatUp{
+    0%{transform:translateY(0) rotate(0);opacity:0}
+    15%{opacity:.9}
+    100%{transform:translateY(-115vh) rotate(360deg);opacity:0}
+}
+
+.sparkle{
+    position:fixed;
+    color:#fff;
+    pointer-events:none;
+    animation:spark 1.8s ease-in-out infinite;
+    z-index:1;
+}
+
+@keyframes spark{
+    0%,100%{opacity:.15;transform:scale(.5)}
+    50%{opacity:1;transform:scale(1.5)}
 }
 
 .container{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:45px 18px 70px;
     text-align:center;
 }
 
 h1{
-    color:#e34f82;
-    font-size:34px;
-    margin-bottom:35px;
+    color:#df376e;
+    font-size:clamp(30px,6vw,50px);
+    margin:10px 0 8px;
+    text-shadow:0 3px 15px #fff;
+}
+
+.subtitle{
+    font-size:19px;
+    margin-bottom:25px;
+}
+
+.dates{
+    display:inline-block;
+    background:rgba(255,255,255,.8);
+    padding:12px 22px;
+    border-radius:30px;
+    box-shadow:0 8px 25px rgba(150,50,90,.12);
+    font-size:18px;
+    margin-bottom:30px;
 }
 
 .gift{
-    width:240px;
-    height:190px;
+    width:260px;
+    height:210px;
     position:relative;
-    margin:auto;
+    margin:25px auto 0;
     cursor:pointer;
 }
 
 .box{
     position:absolute;
     bottom:0;
+    left:10px;
     width:240px;
-    height:145px;
+    height:150px;
     background:#ff719f;
-    border-radius:10px;
+    border-radius:12px;
+    box-shadow:0 15px 25px rgba(180,50,100,.2);
 }
 
 .lid{
     position:absolute;
-    top:15px;
-    left:-10px;
+    top:20px;
+    left:0;
     width:260px;
-    height:55px;
+    height:58px;
     background:#ff4f89;
-    border-radius:10px;
+    border-radius:12px;
     transition:.8s;
     z-index:4;
 }
@@ -76,25 +129,26 @@ h1{
     width:38px;
     height:190px;
     background:#ffd45c;
-    left:101px;
+    left:111px;
+    top:20px;
     z-index:5;
 }
 
 .bow{
     position:absolute;
-    top:-40px;
-    left:85px;
+    top:-30px;
+    left:88px;
     font-size:65px;
     z-index:8;
     transition:.8s;
 }
 
 .gift.open .lid{
-    transform:translateY(-100px) rotate(-8deg);
+    transform:translateY(-110px) rotate(-8deg);
 }
 
 .gift.open .bow{
-    transform:translateY(-100px);
+    transform:translateY(-110px);
 }
 
 .card{
@@ -102,77 +156,104 @@ h1{
     width:200px;
     height:120px;
     background:white;
-    left:20px;
+    left:30px;
     bottom:30px;
-    border-radius:12px;
+    border-radius:15px;
     z-index:2;
     transition:1s;
     padding:20px;
-    font-size:20px;
+    font-size:21px;
+    box-shadow:0 8px 20px rgba(120,50,80,.15);
 }
 
 .gift.open .card{
-    transform:translateY(-130px);
+    transform:translateY(-135px);
 }
 
 .hint{
-    margin-top:35px;
-    color:#d84479;
+    margin-top:30px;
+    color:#d52f68;
     font-size:19px;
     animation:pulse 1.5s infinite;
 }
 
 @keyframes pulse{
-    50%{transform:scale(1.08)}
+    50%{transform:scale(1.06)}
 }
 
-.message{
-    position:fixed;
-    inset:0;
-    background:linear-gradient(135deg,#ffd6e7,#fff0b5,#d7f7ff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:25px;
-    opacity:0;
-    pointer-events:none;
-    transition:1s;
+.music{
+    margin:30px auto;
 }
 
-.message.show{
-    opacity:1;
-    pointer-events:auto;
-}
-
-.paper{
-    max-width:700px;
-    background:white;
+.music button{
+    border:0;
+    background:#e83268;
+    color:white;
+    font-size:18px;
+    padding:13px 25px;
     border-radius:30px;
-    padding:40px;
-    text-align:center;
-    box-shadow:0 20px 60px rgba(180,70,120,.25);
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(200,40,90,.25);
 }
 
-.paper h2{
-    color:#e4497c;
-    font-size:42px;
+.music small{
+    display:block;
+    margin-top:10px;
+    opacity:.75;
 }
 
-.paper p{
-    font-size:21px;
-    line-height:2;
+.section{
+    margin-top:45px;
+    background:rgba(255,255,255,.78);
+    border-radius:28px;
+    padding:28px 20px;
+    box-shadow:0 15px 45px rgba(130,50,90,.12);
 }
 
-.big{
-    font-size:65px;
+.section h2{
+    color:#dc386d;
+    font-size:30px;
+    margin-top:0;
 }
 
-.footer{
-    color:#e4497c;
+.long-message{
+    text-align:right;
+    font-size:18px;
+    line-height:2.15;
+    white-space:pre-line;
+}
+
+.messages{
+    display:grid;
+    gap:14px;
+}
+
+.memory{
+    background:#fff;
+    border-radius:20px;
+    padding:18px;
+    font-size:20px;
+    box-shadow:0 7px 18px rgba(100,40,70,.09);
+}
+
+.memory span{
+    display:block;
+    margin-top:8px;
+    font-size:32px;
+}
+
+.final{
+    color:#df376e;
     font-size:25px;
     font-weight:bold;
+    margin-top:25px;
 }
 
+footer{
+    margin-top:35px;
+    font-size:17px;
+    opacity:.75;
+}
 </style>
 </head>
 
@@ -180,7 +261,15 @@ h1{
 
 <div class="container">
 
-<h1>🎉 سنة كاملة من الذكريات ❤️</h1>
+<h1>🎉 سنتنا الأولى ❤️</h1>
+
+<div class="subtitle">
+سنة من الذكريات... ولسه الحكاية مكملة ✨
+</div>
+
+<div class="dates">
+25 / 9 / 2025 ❤️ — ❤️ 25 / 9 / 2026
+</div>
 
 <div class="gift" id="gift" onclick="openGift()">
 
@@ -203,63 +292,219 @@ h1{
 اضغطي على الهدية 🎁
 </div>
 
-</div>
+<div class="music">
 
-<div class="message" id="message">
+<button onclick="toggleMusic()">
+🎵 شغلي أغنيتنا
+</button>
 
-<div class="paper">
-
-<div class="big">❤️</div>
-
-<h2>سنة كاملة</h2>
-
-<p>
-النهارده مش يوم عادي...
-<br>
-النهارده كملنا سنة من أجمل الذكريات.
-<br><br>
-سنة فيها ضحك ومواقف وكلام كتير،
-والأجمل إن لسه عندنا ذكريات كتير جاية.
-</p>
-
-<div class="footer">
-كل سنة وإنتِ جزء جميل من حكايتي ❤️
-</div>
+<small>
+الأغنية هتتحط بعدين ❤️
+</small>
 
 </div>
 
+
+<div class="section">
+
+<h2>
+💌 من 25 / 9 / 2025 لـ 25 / 9 / 2026
+</h2>
+
+<div class="long-message">
+
+من 2025-9-25 لي 2026-9-25
+
+و احنا مع بعض ي نور عيني اه سنه قليله علينا احنا بي الي مرينا بيه يروح قلبي مرينا بكل حاجه حرفيا انا قلبي شايفك اجمل واحده في الدنيا وعيني شايفاكي بنتي و بطفولتك العسليه ال بموت فيها وله لما بخدك ف حضني بحس اني مسكت كل حاجه ليا ف الدنيا ب ايدي كده حضنت بنتي و مراتي و حبيبتي وصحبتي واختي وكل حاجه ليا ف الدنيا ي روح الروح انتي وطول ما احنا مع بعض ي نور حياتي انتي كل حاجه هتبقي كويسه وفيها فرحه ي عشقي يومي مينفعش يعدي في دقيقه من غيرك هيعدي ازاي من غير لما اعصبك واشوف غيرتك عليا وله لما اشوف دلعك وانتي بتدلعي عليا من غيرك فعلااا مششش هعيش ي حبيبتي كملنا سنه بس لسه سنين كتيره ي حياتي انتيييي هنفضل طول العمر مع بعض مفيش اي حاجه هتعدي من غيرك ي نور عيني طول الوقت بفكر فيكي و في جننا وفي حبنا ل بعض و فرحتنا ببعض لما نشوف بعض ي حبيبتي طول الوقت فاكر كل لحظه وانتي معايا في يومي ده حتي وانا نايم بفكر فيكي وبفكر ابسطك ازاي واخليكي مبسوطه ولما بنكد عليكي ازا كان غيره عليكي او اي حاجه بنكد لو غيره عشان مراتي و حبيبتي و صحبتي واختي ولكن لما بنكد علي غلطه بنكد علي طفلتي بنتي يعني الي متغلطش تاني عشان ابوها حبيبها ميعقبهاش مع انو ميقدرش علي دمعه منها ال هو انا باباها يعني ي حبيبتي بحبك اوييييي و بحبك اوييييي اوييي لما بتيجي وتجري عليا وانتي مضايقه وانتي مبسوطه وفي كل الاوقات بتجري عليا بتجري علي ابوكي حبيبك وجوزك وصحبك وكل حاجه ليكي زي مانتي كل حاجه ليا حبي ليكي عمرو ما جيه ف يوم وقل و واثق فيكيييي ثقهههه انك متخبيش عليا حاجه ولو غلطتي تيجي تقوليلي انا غلطت ف ده و ده بتبسط اوييي اوييي ي نور حياتي انتي انا من غيرك اتوه ف تفكيري وف حجاتتتت كتيرهههه اوي ي حبيبت قلبي انتي بعشقك ي نور عينيييي بحب كل حاجه كانت بينا من اول مكلمتنا ده انا حتي فاكر حجات لينا من الاولللل خالص عمرها متتنسي ابداا ي نور عيني انتي بجد بحبك اوييي اوييي ي نور عيوني بحب عيونك اوييي و بحب كل حاجه فيكي وضحكتك العسل ال مش بتفارق خيالي وله لما بشوف بنت حتي لو حلوه ف عين اي حد مفيش في عيني غيرك ي نور حياتيي وعمري و حبيبت ايامي وعمري كلوووو بعشقككك كل السنينن مع بعض طبعا ماه ما اتكلم مش هوصف مبسوط قد ايه وغلاوتك عندي
+
 </div>
+
+<div class="final">
+❤️ كل سنة وإحنا بنصنع ذكريات جديدة ❤️
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>
+🌹 رسايل عمري ما أنساها
+</h2>
+
+<div class="messages">
+
+<div class="memory">
+«انت هتخزوقني؟»
+<span>❤️</span>
+</div>
+
+<div class="memory">
+«مش هتسيبني؟»
+<span>🥺❤️</span>
+</div>
+
+<div class="memory">
+«واثقه فيك.»
+<span>🤍</span>
+</div>
+
+<div class="memory">
+«انت فعلا بقي بتحبني وله مجرد تفكير؟»
+<span>💗</span>
+</div>
+
+<div class="memory">
+«خد يا عبدو 🌹»
+<span>🌹❤️</span>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+معمولة مخصوص عشان ذكرى 25 / 9 ❤️
+</footer>
+
+</div>
+
+
+<audio id="song"></audio>
+
 
 <script>
 
-const emojis=["❤️","💕","💖","💗","💓","✨","🌸"];
+const emojis=[
+"❤️",
+"❤️",
+"❤️",
+"💕",
+"💖",
+"✨",
+"🌹"
+];
+
 
 function createHeart(){
 
 const h=document.createElement("div");
 
 h.className="heart";
-h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
 
-h.style.left=Math.random()*100+"vw";
-h.style.fontSize=(18+Math.random()*25)+"px";
-h.style.animationDuration=(5+Math.random()*5)+"s";
+h.innerHTML=
+emojis[Math.floor(Math.random()*emojis.length)];
+
+h.style.left=
+Math.random()*100+"vw";
+
+h.style.fontSize=
+(18+Math.random()*28)+"px";
+
+h.style.animationDuration=
+(5+Math.random()*5)+"s";
 
 document.body.appendChild(h);
 
-setTimeout(()=>h.remove(),10000);
+setTimeout(
+()=>h.remove(),
+11000
+);
 
 }
 
-setInterval(createHeart,400);
+
+function createStar(){
+
+const s=document.createElement("div");
+
+s.className="star";
+
+s.innerHTML="✦";
+
+s.style.left=
+Math.random()*100+"vw";
+
+s.style.top=
+Math.random()*100+"vh";
+
+s.style.animationDelay=
+Math.random()*2+"s";
+
+document.body.appendChild(s);
+
+}
+
+
+function createSparkle(){
+
+const s=document.createElement("div");
+
+s.className="sparkle";
+
+s.innerHTML="✧";
+
+s.style.left=
+Math.random()*100+"vw";
+
+s.style.top=
+Math.random()*100+"vh";
+
+document.body.appendChild(s);
+
+setTimeout(
+()=>s.remove(),
+2500
+);
+
+}
+
+
+for(let i=0;i<35;i++){
+
+createStar();
+
+}
+
+
+setInterval(
+createHeart,
+350
+);
+
+
+setInterval(
+createSparkle,
+700
+);
+
 
 function openGift(){
 
-document.getElementById("gift").classList.add("open");
+document
+.getElementById("gift")
+.classList.add("open");
 
 setTimeout(()=>{
-document.getElementById("message").classList.add("show");
-},1000);
+
+window.scrollTo({
+
+top:document.body.scrollHeight/3,
+
+behavior:"smooth"
+
+});
+
+},900);
+
+}
+
+
+function toggleMusic(){
+
+alert(
+"لسه هنضيف الأغنية 🎵❤️"
+);
 
 }
 
